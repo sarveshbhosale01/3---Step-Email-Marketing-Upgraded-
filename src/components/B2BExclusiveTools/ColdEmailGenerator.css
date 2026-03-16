@@ -1,0 +1,42 @@
+.cold-container{
+width:100vw;
+min-height:100vh;
+background:linear-gradient(135deg,#e6f7ff,#f0f9ff);
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:50px;
+font-family:'Segoe UI',sans-serif;
+}
+
+.cold-card{
+background:white;
+padding:40px;
+border-radius:18px;
+width:500px;
+box-shadow:0 10px 30px rgba(0,0,0,0.12);
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.cold-card input{
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.cold-card button{
+background:#01b0f0;
+color:white;
+border:none;
+padding:12px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.cold-card textarea{
+height:150px;
+padding:10px;
+border-radius:8px;
+}

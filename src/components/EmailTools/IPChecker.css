@@ -1,0 +1,80 @@
+.ip-container{
+
+width:100vw;
+min-height:100vh;
+
+background:linear-gradient(135deg,#e6f7ff,#f0f9ff);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding:50px;
+
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+
+}
+
+.ip-container h1{
+
+color:#01b0f0;
+margin-bottom:10px;
+
+}
+
+.ip-sub{
+
+margin-bottom:40px;
+color:#444;
+
+}
+
+.ip-box{
+
+display:flex;
+gap:15px;
+
+}
+
+.ip-box input{
+
+width:500px;
+padding:15px;
+border-radius:10px;
+border:1px solid #ccc;
+
+font-size:16px;
+
+}
+
+.ip-box button{
+
+background:#01b0f0;
+color:white;
+border:none;
+
+padding:12px 25px;
+border-radius:8px;
+
+cursor:pointer;
+
+display:flex;
+align-items:center;
+gap:8px;
+
+}
+
+.ip-result{
+
+margin-top:30px;
+
+background:white;
+
+padding:20px;
+border-radius:12px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+font-weight:600;
+
+}

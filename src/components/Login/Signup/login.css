@@ -1,0 +1,412 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Poppins",sans-serif;
+}
+
+/* ALLOW SCROLL BUT HIDE SCROLLBAR */
+
+html, body {
+min-height:100%;
+height:auto;
+overflow-x:hidden;
+overflow-y:auto;
+scrollbar-width:none;
+}
+
+body::-webkit-scrollbar{
+display:none;
+}
+
+/* LOGIN WRAPPER */
+
+.login-wrapper{
+
+min-height:100vh;
+width:100%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(135deg,#84d4f9,#f0f9ff);
+
+position:relative;
+
+padding:40px 20px;
+
+}
+
+/* BRAND */
+
+.brand{
+
+position:absolute;
+top:25px;
+left:35px;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+font-weight:600;
+font-size:40px;
+
+z-index:5;
+
+}
+
+.logo{
+
+color:black;
+
+padding:6px;
+border-radius:6px;
+
+}
+
+/* LOGIN CARD */
+
+.login-card{
+
+width:380px;
+max-width:90%;
+
+padding:40px;
+
+background:rgba(255,255,255,0.45);
+backdrop-filter:blur(12px);
+
+border-radius:20px;
+
+box-shadow:0 20px 50px rgba(0,0,0,0.2);
+
+text-align:center;
+
+z-index:5;
+
+}
+
+.login-card input{
+
+width:100%;
+padding:12px;
+
+margin-bottom:12px;
+
+border-radius:8px;
+border:1px solid #ddd;
+
+}
+
+/* BUTTONS */
+
+.primary-btn{
+
+width:100%;
+padding:12px;
+
+background:black;
+color:white;
+
+border:none;
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+.google-btn{
+
+margin-top:10px;
+
+width:100%;
+padding:12px;
+
+border-radius:8px;
+border:1px solid #ddd;
+
+background:white;
+
+}
+
+/* TEXT */
+
+.toggle{
+
+margin-top:15px;
+font-size:14px;
+
+}
+
+.toggle span{
+
+color:#01b0f0;
+cursor:pointer;
+
+}
+
+/* CLOUDS */
+
+.cloud{
+
+position:absolute;
+background:white;
+border-radius:50px;
+opacity:0.9;
+
+}
+
+.cloud::before,
+.cloud::after{
+
+content:"";
+position:absolute;
+background:white;
+border-radius:50%;
+
+}
+
+.cloud1{
+
+width:180px;
+height:60px;
+
+top:120px;
+left:-200px;
+
+animation:cloudMove 80s linear infinite;
+
+}
+
+.cloud1::before{
+
+width:80px;
+height:80px;
+
+top:-30px;
+left:30px;
+
+}
+
+.cloud1::after{
+
+width:60px;
+height:60px;
+
+top:-15px;
+left:90px;
+
+}
+
+.cloud2{
+
+width:160px;
+height:55px;
+
+top:350px;
+left:-200px;
+
+animation:cloudMove 100s linear infinite;
+
+}
+
+.cloud2::before{
+
+width:70px;
+height:70px;
+
+top:-25px;
+left:25px;
+
+}
+
+.cloud2::after{
+
+width:50px;
+height:50px;
+
+top:-10px;
+left:80px;
+
+}
+
+.cloud3{
+
+width:200px;
+height:65px;
+
+top:600px;
+left:-250px;
+
+animation:cloudMove 120s linear infinite;
+
+}
+
+.cloud3::before{
+
+width:90px;
+height:90px;
+
+top:-35px;
+left:35px;
+
+}
+
+.cloud3::after{
+
+width:60px;
+height:60px;
+
+top:-20px;
+left:110px;
+
+}
+
+@keyframes cloudMove{
+
+0%{transform:translateX(0)}
+100%{transform:translateX(2200px)}
+
+}
+
+/* PLANES */
+
+/* PLANES */
+
+.plane{
+
+position:absolute;
+font-size:40px;
+color:#01b0f0;
+
+opacity:0;
+
+}
+
+/* WHITE CONTRAIL */
+
+.plane::after{
+
+content:"";
+
+position:absolute;
+
+width:160px;
+height:3px;
+
+background:linear-gradient(
+to left,
+rgba(255,255,255,0.9),
+rgba(255,255,255,0.5),
+rgba(255,255,255,0)
+);
+
+top:50%;
+left:-160px;
+
+transform:translateY(-50%);
+
+}
+
+/* LEFT → RIGHT PLANES */
+
+.plane-lt{
+top:140px;
+left:-120px;
+animation:flyRight 18s linear infinite;
+}
+
+.plane-lm{
+top:350px;
+left:-120px;
+animation:flyRight 18s linear infinite 6s;
+}
+
+.plane-lb{
+top:650px;
+left:-120px;
+animation:flyRight 18s linear infinite 12s;
+}
+
+/* RIGHT → LEFT PLANES */
+
+.plane-rt{
+top:180px;
+right:-120px;
+transform:rotateY(180deg);
+animation:flyLeft 18s linear infinite 3s;
+}
+
+.plane-rm{
+top:420px;
+right:-120px;
+transform:rotateY(180deg);
+animation:flyLeft 18s linear infinite 9s;
+}
+
+.plane-rb{
+top:700px;
+right:-120px;
+transform:rotateY(180deg);
+animation:flyLeft 18s linear infinite 15s;
+}
+
+/* FLIGHT ANIMATION */
+
+@keyframes flyRight{
+
+0%{
+transform:translateX(0) translateY(0);
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+50%{
+transform:translateX(1000px) translateY(-20px);
+}
+
+90%{
+opacity:1;
+}
+
+100%{
+transform:translateX(2200px) translateY(0);
+opacity:0;
+}
+
+}
+
+@keyframes flyLeft{
+
+0%{
+transform:translateX(0) translateY(0) rotateY(180deg);
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+50%{
+transform:translateX(-1000px) translateY(20px) rotateY(180deg);
+}
+
+90%{
+opacity:1;
+}
+
+100%{
+transform:translateX(-2200px) translateY(0) rotateY(180deg);
+opacity:0;
+}
+
+}

@@ -1,0 +1,416 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Poppins",sans-serif;
+}
+
+/* PAGE */
+
+html,body{
+overflow-x:hidden;
+overflow-y:auto;
+}
+
+/* MAIN CONTAINER */
+
+.b2b-container{
+
+width:100%;
+min-height:100vh;
+
+background:linear-gradient(135deg,#84d4f9,#f0f9ff);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding:60px 20px;
+
+position:relative;
+overflow:hidden;
+
+}
+
+/* CLOUDS */
+
+.cloud{
+
+position:absolute;
+background:white;
+border-radius:100px;
+
+opacity:0.7;
+
+animation:cloudMove linear infinite;
+
+}
+
+.cloud:before,
+.cloud:after{
+
+content:"";
+position:absolute;
+background:white;
+border-radius:50%;
+
+}
+
+.cloud1{
+width:160px;
+height:50px;
+top:120px;
+left:-200px;
+animation-duration:40s;
+}
+
+.cloud1:before{
+width:80px;
+height:80px;
+top:-40px;
+left:20px;
+}
+
+.cloud1:after{
+width:60px;
+height:60px;
+top:-30px;
+right:20px;
+}
+
+.cloud2{
+width:200px;
+height:60px;
+top:320px;
+left:-250px;
+animation-duration:60s;
+}
+
+.cloud2:before{
+width:90px;
+height:90px;
+top:-45px;
+left:30px;
+}
+
+.cloud2:after{
+width:70px;
+height:70px;
+top:-35px;
+right:30px;
+}
+
+.cloud3{
+width:140px;
+height:40px;
+top:520px;
+left:-200px;
+animation-duration:50s;
+}
+
+.cloud3:before{
+width:70px;
+height:70px;
+top:-35px;
+left:15px;
+}
+
+.cloud3:after{
+width:50px;
+height:50px;
+top:-25px;
+right:15px;
+}
+
+@keyframes cloudMove{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(140vw);
+}
+
+}
+
+/* TITLE */
+
+.b2b-title{
+font-size:2.6rem;
+color:#000;
+margin-bottom:8px;
+font-weight:700;
+}
+
+.highlight{
+color:#01b0f0;
+}
+
+/* SUBTITLE */
+
+.b2b-subtitle{
+color:#444;
+margin-bottom:40px;
+text-align:center;
+max-width:650px;
+}
+
+/* SECTION TITLE */
+
+.b2b-section-title{
+
+margin-top:25px;
+margin-bottom:25px;
+
+color:#000;
+font-size:1.6rem;
+font-weight:600;
+
+text-align:center;
+
+}
+
+/* GRID */
+
+.b2b-grid{
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+
+gap:30px;
+
+max-width:1000px;
+
+margin-bottom:20px;
+
+}
+
+/* CARD */
+
+.b2b-card{
+
+width:260px;
+
+background:white;
+
+padding:28px;
+
+border-radius:0px;
+
+box-shadow:0 12px 35px rgba(0,0,0,0.12);
+
+cursor:pointer;
+
+transition:all .3s ease;
+
+text-align:center;
+
+}
+
+/* CARD HOVER */
+
+.b2b-card:hover{
+
+transform:translateY(-8px) scale(1.02);
+
+box-shadow:0 18px 45px rgba(1,176,240,0.25);
+
+}
+
+/* ICON */
+
+.b2b-icon{
+font-size:40px;
+color:#01b0f0;
+margin-bottom:12px;
+}
+
+/* TEXT */
+
+.b2b-card h3{
+color:#010202;
+margin-bottom:8px;
+}
+
+.b2b-card p{
+font-size:.9rem;
+color:#555;
+line-height:1.5;
+}
+
+/* CAMPAIGN BUTTON */
+
+.campaign-launch{
+
+margin-top:60px;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+gap:15px;
+
+}
+
+.launch-text{
+color:#555;
+font-size:15px;
+}
+
+/* BUTTON */
+
+.launch-btn{
+
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+border-radius: 0px !important;
+
+padding:14px 28px;
+
+font-size:16px;
+font-weight:600;
+
+border:none;
+
+cursor:pointer;
+
+background:linear-gradient(135deg,#090505,#2e2e2e);
+
+color:rgb(255, 255, 255);
+
+transition:.3s;
+
+}
+
+/* BUTTON HOVER */
+
+.launch-btn:hover{
+
+transform:translateY(-3px) scale(1.05);
+
+}
+
+/* PLANE */
+
+.launch-icon{
+font-size:20px;
+display:inline-block;
+}
+
+/* PLANE FLY */
+
+.launch-btn:hover .launch-icon{
+
+animation:planeFly 4.2s ease forwards;
+
+}
+
+@keyframes planeFly{
+
+0%{
+transform: translateX(0);
+opacity:1;
+}
+
+100%{
+transform: translateX(200px);
+opacity:0;
+}
+
+}
+/* =================================
+FLYING AIRPLANES
+================================= */
+
+.flying-plane{
+
+position:absolute;
+left:-120px;
+
+display:flex;
+align-items:center;
+
+z-index:1;
+
+}
+
+/* PLANES */
+
+.plane{
+font-size:40px;
+color:white;
+transform:rotate(20deg);
+}
+
+/* CONTRAIL */
+
+.contrail{
+
+width:200px;
+height:3px;
+
+background:linear-gradient(
+to right,
+rgba(255,255,255,0.8),
+rgba(255,255,255,0)
+);
+
+margin-left:10px;
+
+}
+
+/* PLANE POSITIONS */
+
+.plane-a{
+top:120px;
+animation:planeTravelA 24s linear infinite;
+}
+
+.plane-b{
+top:320px;
+animation:planeTravelB 30s linear infinite;
+animation-delay:6s;
+}
+
+.plane-c{
+top:520px;
+animation:planeTravelC 28s linear infinite;
+animation-delay:12s;
+}
+
+/* ANIMATIONS */
+
+@keyframes planeTravelA{
+
+0%{ transform:translateX(0); opacity:0; }
+5%{ opacity:1; }
+90%{ opacity:1; }
+100%{ transform:translateX(120vw); opacity:0; }
+
+}
+
+@keyframes planeTravelB{
+
+0%{ transform:translateX(0); opacity:0; }
+5%{ opacity:1; }
+90%{ opacity:1; }
+100%{ transform:translateX(120vw); opacity:0; }
+
+}
+
+@keyframes planeTravelC{
+
+0%{ transform:translateX(0); opacity:0; }
+5%{ opacity:1; }
+90%{ opacity:1; }
+100%{ transform:translateX(120vw); opacity:0; }
+
+}

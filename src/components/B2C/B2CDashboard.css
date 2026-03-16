@@ -1,0 +1,77 @@
+.b2c-container{
+
+width:100vw;
+height:100vh;
+background:linear-gradient(135deg,#ace4f8,#e6f7ff);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+
+}
+
+.b2c-title{
+
+font-size:2.4rem;
+color:#01b0f0;
+margin-bottom:8px;
+
+}
+
+.b2c-subtitle{
+
+color:#444;
+margin-bottom:40px;
+
+}
+
+.b2c-grid{
+
+display:flex;
+gap:40px;
+
+}
+
+.b2c-card{
+
+width:280px;
+background:white;
+padding:30px;
+border-radius:18px;
+box-shadow:0 12px 35px rgba(0,0,0,0.12);
+cursor:pointer;
+transition:all .3s ease;
+text-align:center;
+border:2px solid transparent;
+
+}
+
+.b2c-card:hover{
+
+transform:translateY(-8px) scale(1.02);
+border-color:#01b0f0;
+box-shadow:0 18px 45px rgba(1,176,240,0.3);
+
+}
+
+.b2c-icon{
+
+font-size:40px;
+color:#01b0f0;
+margin-bottom:10px;
+
+}
+
+.b2c-card h3{
+
+color:#01b0f0;
+
+}
+
+.b2c-card p{
+
+font-size:.9rem;
+color:#555;
+
+}

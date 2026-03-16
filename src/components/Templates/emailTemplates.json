@@ -1,0 +1,237 @@
+{
+  "email_templates": [
+    {
+      "id": 1,
+      "name": "Short Benefit-Focused",
+      "subject": "Better Ventilation for Sarvesh Fastfood",
+      "content": {
+        "introduction": "Hi Sarvesh, We help restaurants like yours stay comfortable and efficient.",
+        "body": [
+          {
+            "heading": "Key benefits you'll get",
+            "points": [
+              "Improved customer comfort",
+              "Reduced energy costs",
+              "Cleaner, fresher environment"
+            ]
+          }
+        ],
+        "cta": "Let's discuss how we can enhance your space.",
+        "closing": "Best, LG Home Comfort Team (555) 123-4567"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Problem-Solution Format",
+      "subject": "Solve Kitchen Heat & Odor Issues",
+      "content": {
+        "introduction": "Sarvesh Fastfood Team,",
+        "body": [
+          {
+            "heading": "Common restaurant challenges we solve",
+            "points": [
+              "Kitchen heat affecting dining area",
+              "Cooking odors lingering",
+              "High energy bills"
+            ]
+          }
+        ],
+        "cta": "Quick chat to learn more?",
+        "closing": "LG Home Comfort solutions@lghomecomfort.com"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Direct Value Proposition",
+      "subject": "Increase Comfort, Reduce Costs",
+      "content": {
+        "introduction": "Three ways we help Sarvesh Fastfood:",
+        "body": [
+          {
+            "heading": "Our value",
+            "points": [
+              "Keep dining area comfortable",
+              "Lower energy consumption",
+              "Remove kitchen odors effectively"
+            ]
+          }
+        ],
+        "cta": "Ready to improve your environment?",
+        "closing": "LG Home Comfort (555) 123-4567"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Question-Based Approach",
+      "subject": "Quick Ventilation Question",
+      "content": {
+        "introduction": "Hi there, Noticing any of these at Sarvesh Fastfood?",
+        "body": [
+          {
+            "heading": "Common signs",
+            "points": [
+              "Customers complaining about heat",
+              "Kitchen smells in dining area",
+              "Energy bills too high"
+            ]
+          }
+        ],
+        "cta": "Would you be open to a brief call this week?",
+        "closing": "Best regards, LG Home Comfort Team"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Ultra-Short Professional",
+      "subject": "Sarvesh Fastfood - Ventilation Solutions",
+      "content": {
+        "introduction": "We provide efficient kitchen ventilation systems for restaurants.",
+        "body": [
+          {
+            "heading": "Benefits",
+            "points": [
+              "Enhanced customer comfort",
+              "Energy cost savings",
+              "Improved air quality"
+            ]
+          }
+        ],
+        "cta": "Available for consultation.",
+        "closing": "LG Home Comfort (555) 123-4567"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Lead Generation Outreach",
+      "subject": "Quick question about your current workflow",
+      "content": {
+        "introduction": "Hi {{FirstName}}, I noticed your company is growing rapidly in {{Industry}}.",
+        "body": [
+          {
+            "heading": "Why I'm reaching out",
+            "points": [
+              "Many companies struggle with inefficient processes",
+              "Our platform automates key workflows",
+              "Businesses like yours reduce operational costs"
+            ]
+          }
+        ],
+        "cta": "Would you be open to a quick 15-minute conversation next week?"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Product Demo Invitation",
+      "subject": "See how companies improve performance",
+      "content": {
+        "introduction": "Hi {{FirstName}}, we recently helped several companies improve productivity.",
+        "body": [
+          {
+            "heading": "What you'll learn",
+            "points": [
+              "Automating repetitive processes",
+              "Improving team collaboration",
+              "Scaling operations efficiently"
+            ]
+          }
+        ],
+        "cta": "Book a demo to see the platform in action."
+      }
+    },
+    {
+      "id": 8,
+      "name": "Partnership Proposal",
+      "subject": "Exploring a partnership opportunity",
+      "content": {
+        "introduction": "Hi {{FirstName}}, I believe there could be strong synergy between our companies.",
+        "body": [
+          {
+            "heading": "Benefits of collaborating",
+            "points": [
+              "Expand market reach",
+              "Deliver more value to clients",
+              "Build long-term partnerships"
+            ]
+          }
+        ],
+        "cta": "Would you be open to discussing this opportunity?"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Case Study Outreach",
+      "subject": "How a company increased efficiency by 40%",
+      "content": {
+        "introduction": "Hi {{FirstName}}, one of our clients recently achieved impressive results.",
+        "body": [
+          {
+            "heading": "Results achieved",
+            "points": [
+              "40% improvement in workflow efficiency",
+              "Reduced operational costs",
+              "Better team productivity"
+            ]
+          }
+        ],
+        "cta": "Would you like to see the full case study?"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Webinar Invitation",
+      "subject": "Invitation: B2B growth strategies",
+      "content": {
+        "introduction": "Hi {{FirstName}}, we're hosting an exclusive webinar for business leaders.",
+        "body": [
+          {
+            "heading": "What you'll learn",
+            "points": [
+              "Modern B2B growth strategies",
+              "Optimizing outreach campaigns",
+              "Best practices used by top companies"
+            ]
+          }
+        ],
+        "cta": "Reserve your seat for the upcoming webinar."
+      }
+    },
+    {
+      "id": 11,
+      "name": "Enterprise Solution Pitch",
+      "subject": "Helping enterprises streamline operations",
+      "content": {
+        "introduction": "Hi {{FirstName}}, enterprises today need scalable solutions.",
+        "body": [
+          {
+            "heading": "Enterprise features",
+            "points": [
+              "Advanced analytics",
+              "Custom integrations",
+              "Enterprise-grade security"
+            ]
+          }
+        ],
+        "cta": "Would you like to explore how this could work for your team?"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Free Business Audit Offer",
+      "subject": "Free audit to improve outreach performance",
+      "content": {
+        "introduction": "Hi {{FirstName}}, we'd like to offer a complimentary outreach audit.",
+        "body": [
+          {
+            "heading": "What the audit covers",
+            "points": [
+              "Email deliverability analysis",
+              "Subject line optimization",
+              "Campaign performance recommendations"
+            ]
+          }
+        ],
+        "cta": "Reply to this email if you'd like to schedule the audit."
+      }
+    }
+  ]
+}

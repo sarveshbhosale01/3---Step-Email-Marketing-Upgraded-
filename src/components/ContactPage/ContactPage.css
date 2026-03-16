@@ -1,0 +1,148 @@
+.contact-page{
+
+min-height:100vh;
+
+background:linear-gradient(180deg,#eef7fb,#f8fcff);
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+font-family:'Segoe UI';
+
+padding:40px;
+
+}
+
+/* TITLE */
+
+.contact-title{
+
+font-size:28px;
+
+color:#333;
+
+letter-spacing:1px;
+
+margin-bottom:6px;
+
+}
+
+.contact-subtitle{
+
+color:#777;
+
+margin-bottom:40px;
+
+}
+
+/* LAYOUT */
+
+.contact-container{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:100px;
+
+max-width:900px;
+
+width:100%;
+
+}
+
+/* BIG EMAIL ICON */
+
+.contact-icon{
+
+font-size:160px;
+
+color:#01b0f0;
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 15px 40px rgba(0,0,0,0.1);
+
+}
+
+/* FORM */
+
+.contact-form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+width:320px;
+
+}
+
+.contact-form input,
+.contact-form textarea{
+
+border:none;
+
+padding:12px 16px;
+
+border-radius:25px;
+
+background:#f0f5f9;
+
+font-size:14px;
+
+outline:none;
+
+}
+
+.contact-form textarea{
+
+border-radius:15px;
+
+resize:none;
+
+}
+
+/* BUTTON */
+
+.contact-form button{
+
+margin-top:10px;
+
+background:linear-gradient(90deg,#8b5cf6,#01b0f0);
+
+border:none;
+
+padding:12px;
+
+border-radius:25px;
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.3s;
+
+}
+
+.contact-form button:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+
+}
