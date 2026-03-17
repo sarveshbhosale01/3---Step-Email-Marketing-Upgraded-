@@ -1,85 +1,136 @@
-import React,{useState} from "react";
-import axios from "axios";
-import "./SpamChecker.css";
+import React, { useState } from "react";
+import "./SubjectTester.css";
+import { FaCheckCircle, FaTimesCircle, FaSmile, FaClock } from "react-icons/fa";
 
-const SpamChecker = () => {
+const SubjectTester = () => {
 
-const [emailContent,setEmailContent] = useState("");
-const [result,setResult] = useState("");
+  const [subject,setSubject] = useState("");
+  const [preheader,setPreheader] = useState("");
+  const [score,setScore] = useState(null);
+  const [feedback,setFeedback] = useState([]);
 
-const checkSpam = async () => {
+  const analyzeSubject = () => {
 
-const prompt = `
-Analyze this email marketing content.
+    let calculatedScore = 0;
+    let notes = [];
 
-Return:
+    if(subject.length >= 30 && subject.length <= 60){
+      calculatedScore += 30;
+    } else {
+      notes.push("Subject length should be 30-60 characters");
+    }
 
-1. Spam score out of 100
-2. Risky spam words
-3. Suggested replacements
-4. Overall improvement tips
+    if(preheader.length >= 40 && preheader.length <= 100){
+      calculatedScore += 25;
+    } else {
+      notes.push("Preheader should be 40-100 characters");
+    }
 
-Email:
-${emailContent}
-`;
+    const urgencyWords = ["today","now","limited","exclusive","offer"];
 
-try{
+    if(urgencyWords.some(word => subject.toLowerCase().includes(word))){
+      calculatedScore += 20;
+    } else {
+      notes.push("Add urgency words");
+    }
 
-const response = await axios.post(
-"https://openrouter.ai/api/v1/chat/completions",
-{
-model:"openai/gpt-4o-mini",
-messages:[{role:"user",content:prompt}]
-},
-{
-headers:{
-Authorization:`Bearer YOUR_OPENROUTER_API_KEY`,
-"Content-Type":"application/json"
-}
-}
-);
+    if(subject.includes("{") || subject.includes("Hi")){
+      calculatedScore += 15;
+    } else {
+      notes.push("Add personalization");
+    }
 
-setResult(response.data.choices[0].message.content);
+    if(subject.includes("?") || subject.includes("!")){
+      calculatedScore += 10;
+    } else {
+      notes.push("Add engagement symbol");
+    }
 
-}catch(error){
+    setScore(calculatedScore);
+    setFeedback(notes);
+  };
 
-console.error(error);
-alert("Spam analysis failed");
+  const getGrade = () => {
+    if(score >= 80) return "A";
+    if(score >= 60) return "B";
+    return "C";
+  };
 
-}
+  return (
+    <div className="main-container">
 
+      {/* HEADER */}
+      <h1>Email Subject Line Tester</h1>
+
+      {/* INPUT */}
+      <div className="input-bar">
+        <input
+          type="text"
+          placeholder="Enter Subject Line"
+          value={subject}
+          onChange={(e)=>setSubject(e.target.value)}
+        />
+        <button onClick={analyzeSubject}>Test Subject Now</button>
+      </div>
+
+      {score !== null && (
+        <div className="result-card">
+
+          {/* SCORE SECTION */}
+          <div className="score-section">
+            <div className="grade-circle">{getGrade()}</div>
+
+            <div>
+              <h2>{score} Points</h2>
+              <div className="progress-bar">
+                <div style={{width:`${score}%`}}></div>
+              </div>
+              <p>You may improve with small tweaks</p>
+            </div>
+          </div>
+
+          {/* ANALYTICS */}
+          <div className="analytics">
+
+            {/* SCANNABILITY */}
+            <div className="card">
+              <FaClock className="icon green"/>
+              <h3>Scannability</h3>
+              <p>{subject.length}/60 characters</p>
+            </div>
+
+            {/* READABILITY */}
+            <div className="card">
+              <FaCheckCircle className="icon blue"/>
+              <h3>Readability</h3>
+              <p>Simple & clear subject works best</p>
+            </div>
+
+            {/* LENGTH */}
+            <div className="card">
+              <FaSmile className="icon orange"/>
+              <h3>Length</h3>
+              <p>{subject.split(" ").length} words</p>
+            </div>
+
+            {/* SENTIMENT */}
+            <div className="card">
+              <FaTimesCircle className="icon red"/>
+              <h3>Feedback</h3>
+              <ul>
+                {feedback.map((item,index)=>(
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+      )}
+
+    </div>
+  );
 };
 
-return(
-
-<div className="spam-container">
-
-<h2>Email Spam Checker</h2>
-
-<textarea
-placeholder="Paste your email content here..."
-value={emailContent}
-onChange={(e)=>setEmailContent(e.target.value)}
-/>
-
-<button onClick={checkSpam}>
-Check Spam Risk
-</button>
-
-{result && (
-
-<div className="spam-result">
-
-<pre>{result}</pre>
-
-</div>
-
-)}
-
-</div>
-
-);
-
-};
-
-export default SpamChecker;
+export default SubjectTester;
