@@ -2,245 +2,238 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import CountUp from "react-countup";
 import Confetti from "react-confetti";
-
 import { Pie, Bar, Line, Doughnut } from "react-chartjs-2";
-
 import {
-Chart as ChartJS,
-ArcElement,
-CategoryScale,
-LinearScale,
-BarElement,
-LineElement,
-PointElement,
-Tooltip,
-Legend
+  Chart as ChartJS,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  PointElement,
+  Tooltip,
+  Legend,
 } from "chart.js";
-
 import "./CampaignResult.css";
 
 ChartJS.register(
-ArcElement,
-CategoryScale,
-LinearScale,
-BarElement,
-LineElement,
-PointElement,
-Tooltip,
-Legend
+  ArcElement, CategoryScale, LinearScale,
+  BarElement, LineElement, PointElement,
+  Tooltip, Legend
 );
+
+/* shared chart options */
+const chartOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      labels: {
+        font: { family: "'Sora', sans-serif", size: 11 },
+        color: "#0077aa",
+        boxWidth: 10,
+        padding: 12,
+      },
+    },
+    tooltip: {
+      backgroundColor: "rgba(0,61,92,0.9)",
+      titleFont: { family: "'Sora', sans-serif", size: 12 },
+      bodyFont:  { family: "'DM Mono', monospace", size: 12 },
+      padding: 10,
+      cornerRadius: 8,
+    },
+  },
+  scales: {
+    x: {
+      ticks: { font: { family: "'Sora', sans-serif", size: 11 }, color: "#2a8aaa" },
+      grid:  { color: "rgba(1,176,240,0.08)" },
+    },
+    y: {
+      ticks: { font: { family: "'DM Mono', monospace", size: 11 }, color: "#2a8aaa" },
+      grid:  { color: "rgba(1,176,240,0.08)" },
+    },
+  },
+};
+
+const pieOptions = {
+  responsive: true,
+  plugins: {
+    legend: {
+      labels: {
+        font: { family: "'Sora', sans-serif", size: 11 },
+        color: "#0077aa",
+        padding: 14,
+      },
+    },
+    tooltip: {
+      backgroundColor: "rgba(0,61,92,0.9)",
+      titleFont: { family: "'Sora', sans-serif", size: 12 },
+      bodyFont:  { family: "'DM Mono', monospace", size: 12 },
+      padding: 10,
+      cornerRadius: 8,
+    },
+  },
+};
 
 const CampaignResult = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-const location = useLocation();
-const navigate = useNavigate();
+  const stats = location.state || { sent: 0, failed: 0, total: 0 };
 
-const stats = location.state || {
-sent:0,
-failed:0,
-total:0
-};
+  /* Redirect after 10s */
+  useEffect(() => {
+    const timer = setTimeout(() => navigate("/review"), 10000);
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
-/* Redirect to review page after 10 seconds */
+  /* Derived metrics */
+  const deliveryRate    = stats.total ? ((stats.sent   / stats.total) * 100).toFixed(1) : 0;
+  const failureRate     = stats.total ? ((stats.failed / stats.total) * 100).toFixed(1) : 0;
+  const openRate        = Math.floor(deliveryRate * 0.7);
+  const engagementScore = Math.floor(openRate * 0.6);
+  const bounceRisk      = Math.min(100, Math.floor(failureRate * 1.2));
 
-useEffect(()=>{
+  /* Domain split */
+  const gmail     = Math.floor(stats.sent * 0.45);
+  const outlook   = Math.floor(stats.sent * 0.30);
+  const corporate = stats.sent - gmail - outlook;
 
-const timer = setTimeout(()=>{
+  /* Chart data */
+  const pieData = {
+    labels: ["Delivered", "Failed"],
+    datasets: [{
+      data: [stats.sent, stats.failed],
+      backgroundColor: ["#01b0f0", "#ef4444"],
+      borderWidth: 0,
+    }],
+  };
 
-navigate("/review");
+  const barData = {
+    labels: ["Campaign"],
+    datasets: [
+      { label: "Sent",   data: [stats.sent],   backgroundColor: "#01b0f0" },
+      { label: "Failed", data: [stats.failed], backgroundColor: "#ef4444" },
+    ],
+  };
 
-},10000);
+  const timelineData = {
+    labels: ["Start", "25%", "50%", "75%", "End"],
+    datasets: [{
+      label: "Emails Sent",
+      data: [0, stats.sent * 0.25, stats.sent * 0.5, stats.sent * 0.75, stats.sent],
+      borderColor: "#01b0f0",
+      backgroundColor: "rgba(1,176,240,0.12)",
+      fill: true,
+      tension: 0.4,
+      pointBackgroundColor: "#0077cc",
+      pointRadius: 4,
+    }],
+  };
 
-return ()=>clearTimeout(timer);
+  const domainData = {
+    labels: ["Gmail", "Outlook", "Corporate"],
+    datasets: [{
+      data: [gmail, outlook, corporate],
+      backgroundColor: ["#01b0f0", "#0077cc", "#56ccf2"],
+      borderWidth: 0,
+    }],
+  };
 
-},[navigate]);
+  const healthData = {
+    labels: ["Delivery Rate", "Failure Rate", "Bounce Risk"],
+    datasets: [{
+      label: "Campaign Health",
+      data: [deliveryRate, failureRate, bounceRisk],
+      backgroundColor: ["#22c55e", "#f97316", "#ef4444"],
+      borderRadius: 6,
+    }],
+  };
 
-/* Campaign Metrics */
+  const aiData = {
+    labels: ["Open Rate", "Engagement", "Delivery"],
+    datasets: [{
+      label: "AI Analysis",
+      data: [openRate, engagementScore, deliveryRate],
+      backgroundColor: ["#01b0f0", "#0077cc", "#56ccf2"],
+      borderRadius: 6,
+    }],
+  };
 
-const deliveryRate = stats.total
-? ((stats.sent / stats.total) * 100).toFixed(1)
-: 0;
+  return (
+    <div className="result-page">
+      <Confetti numberOfPieces={220} colors={["#01b0f0", "#0077cc", "#56ccf2", "#ffffff", "#e0f7ff"]} />
 
-const failureRate = stats.total
-? ((stats.failed / stats.total) * 100).toFixed(1)
-: 0;
+      {/* ── HEADER ── */}
+      <div className="result-header">
+        <h1 className="success-title">
+          🎉 <span className="title-gradient">Campaign Sent Successfully!</span>
+        </h1>
+        <p className="redirect-msg">Redirecting to review page in 10 seconds…</p>
+      </div>
 
-/* AI predicted open rate */
+      {/* ── STAT CARDS ── */}
+      <div className="stats-grid">
+        <div className="stat-card">
+          <span className="stat-card-icon">📧</span>
+          <h3>Total Emails</h3>
+          <p><CountUp end={stats.total} duration={2} /></p>
+        </div>
 
-const openRate = Math.floor(deliveryRate * 0.7);
+        <div className="stat-card green">
+          <span className="stat-card-icon">✅</span>
+          <h3>Delivered</h3>
+          <p><CountUp end={stats.sent} duration={2} /></p>
+        </div>
 
-/* engagement score */
+        <div className="stat-card red">
+          <span className="stat-card-icon">❌</span>
+          <h3>Failed</h3>
+          <p><CountUp end={stats.failed} duration={2} /></p>
+        </div>
 
-const engagementScore = Math.floor(openRate * 0.6);
+        <div className="stat-card highlight">
+          <span className="stat-card-icon">🤖</span>
+          <h3>AI Open Rate</h3>
+          <p>{openRate}%</p>
+        </div>
+      </div>
 
-/* bounce probability */
+      {/* ── CHARTS ── */}
+      <p className="section-label">Campaign Analytics</p>
 
-const bounceRisk = Math.min(100, Math.floor(failureRate * 1.2));
+      <div className="charts-grid">
+        <div className="chart-card wide">
+          <h3>Delivery Timeline</h3>
+          <Line data={timelineData} options={chartOptions} />
+        </div>
 
-/* Domain estimation */
+        <div className="chart-card">
+          <h3>Delivery Split</h3>
+          <Pie data={pieData} options={pieOptions} />
+        </div>
 
-const gmail = Math.floor(stats.sent * 0.45);
-const outlook = Math.floor(stats.sent * 0.30);
-const corporate = stats.sent - gmail - outlook;
+        <div className="chart-card">
+          <h3>Email Domains</h3>
+          <Doughnut data={domainData} options={pieOptions} />
+        </div>
 
-/* Charts */
+        <div className="chart-card">
+          <h3>Campaign Performance</h3>
+          <Bar data={barData} options={chartOptions} />
+        </div>
 
-const pieData = {
-labels:["Sent","Failed"],
-datasets:[
-{
-data:[stats.sent,stats.failed],
-backgroundColor:["#22c55e","#ef4444"]
-}
-]
-};
+        <div className="chart-card">
+          <h3>Campaign Health</h3>
+          <Bar data={healthData} options={chartOptions} />
+        </div>
 
-const barData = {
-labels:["Campaign"],
-datasets:[
-{
-label:"Sent",
-data:[stats.sent],
-backgroundColor:"#3b82f6"
-},
-{
-label:"Failed",
-data:[stats.failed],
-backgroundColor:"#ef4444"
-}
-]
-};
-
-const timelineData = {
-labels:["Start","Mid","End"],
-datasets:[
-{
-label:"Emails Sent",
-data:[0,stats.sent/2,stats.sent],
-borderColor:"#6366f1",
-tension:0.4
-}
-]
-};
-
-const domainData = {
-labels:["Gmail","Outlook","Corporate"],
-datasets:[
-{
-data:[gmail,outlook,corporate],
-backgroundColor:["#60a5fa","#34d399","#fbbf24"]
-}
-]
-};
-
-const bounceData = {
-labels:["Delivery Rate","Failure Rate","Bounce Risk"],
-datasets:[
-{
-label:"Campaign Health",
-data:[deliveryRate,failureRate,bounceRisk],
-backgroundColor:["#22c55e","#f97316","#ef4444"]
-}
-]
-};
-
-const aiPerformanceData = {
-labels:["Open Rate","Engagement","Delivery"],
-datasets:[
-{
-label:"AI Campaign Analysis",
-data:[openRate,engagementScore,deliveryRate],
-backgroundColor:["#6366f1","#06b6d4","#22c55e"]
-}
-]
-};
-
-return(
-
-<div className="result-page">
-
-<Confetti numberOfPieces={250}/>
-
-<h1 className="success-title">
-🎉 Campaign Sent Successfully!
-</h1>
-
-<p className="redirect-msg">
-Redirecting to review page in 10 seconds...
-</p>
-
-{/* STAT CARDS */}
-
-<div className="stats-grid">
-
-<div className="stat-card">
-<h3>Total Emails</h3>
-<p>
-<CountUp end={stats.total} duration={2}/>
-</p>
-</div>
-
-<div className="stat-card green">
-<h3>Sent</h3>
-<p>
-<CountUp end={stats.sent} duration={2}/>
-</p>
-</div>
-
-<div className="stat-card red">
-<h3>Failed</h3>
-<p>
-<CountUp end={stats.failed} duration={2}/>
-</p>
-</div>
-
-<div className="stat-card purple">
-<h3>AI Open Rate</h3>
-<p>{openRate}%</p>
-</div>
-
-</div>
-
-{/* CHARTS */}
-
-<div className="charts-grid">
-
-<div className="chart-card">
-<h3>Email Delivery</h3>
-<Pie data={pieData}/>
-</div>
-
-<div className="chart-card">
-<h3>Campaign Performance</h3>
-<Bar data={barData}/>
-</div>
-
-<div className="chart-card">
-<h3>Campaign Timeline</h3>
-<Line data={timelineData}/>
-</div>
-
-<div className="chart-card">
-<h3>Email Domains</h3>
-<Doughnut data={domainData}/>
-</div>
-
-<div className="chart-card">
-<h3>Campaign Health</h3>
-<Bar data={bounceData}/>
-</div>
-
-<div className="chart-card">
-<h3>AI Campaign Analysis</h3>
-<Bar data={aiPerformanceData}/>
-</div>
-
-</div>
-
-</div>
-
-);
-
+        <div className="chart-card">
+          <h3>AI Campaign Analysis</h3>
+          <Bar data={aiData} options={chartOptions} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CampaignResult;

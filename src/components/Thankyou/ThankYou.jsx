@@ -1,62 +1,74 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import "./ThankYou.css";
 
 const ThankYou = () => {
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-useEffect(()=>{
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate("/");
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
-const timer = setTimeout(()=>{
+  return (
+    <div className="thankyou-page">
 
-navigate("/");
+      {/* floating orb bottom-right */}
+      <div className="orb-bottom" />
 
-},10000); // redirect to home after 10s
+      {/* status badge */}
+      <div className="success-badge">Campaign Delivered</div>
 
-return ()=>clearTimeout(timer);
+      {/* emoji */}
+      <span className="thankyou-emoji">🎉</span>
 
-},[navigate]);
+      {/* title */}
+      <h1>
+        Thank You for Using{" "}
+        <span className="gradient-text">Our Campaign System</span>
+      </h1>
 
-return (
+      {/* subtitle */}
+      <p>Your email campaign was successfully sent and analysed.</p>
 
-<div className="thankyou-page">
+      {/* features box */}
+      <div className="features">
 
-<h1>🎉 Thank You for Using Our Campaign System</h1>
+        <h3>What You Can Explore Next</h3>
 
-<p>
-Your email campaign was successfully sent and analysed.
-</p>
+        <ul>
+          <li>
+            <span className="li-icon">📊</span>
+            Advanced Campaign Analytics
+          </li>
+          <li>
+            <span className="li-icon">🤖</span>
+            AI Generated Email Campaigns
+          </li>
+          <li>
+            <span className="li-icon">📧</span>
+            Smart Email Personalisation
+          </li>
+          <li>
+            <span className="li-icon">🎯</span>
+            Audience Segmentation
+          </li>
+          <li>
+            <span className="li-icon">📈</span>
+            Performance Tracking Dashboard
+          </li>
+        </ul>
 
-<div className="features">
+      </div>
 
-<h3>What You Can Explore Next</h3>
+      {/* redirect notice */}
+      <p className="redirect-text">Redirecting you to homepage...</p>
 
-<ul>
-
-<li>📊 Advanced Campaign Analytics</li>
-
-<li>🤖 AI Generated Email Campaigns</li>
-
-<li>📧 Smart Email Personalisation</li>
-
-<li>🎯 Audience Segmentation</li>
-
-<li>📈 Performance Tracking Dashboard</li>
-
-</ul>
-
-</div>
-
-<p className="redirect-text">
-Redirecting you to homepage...
-</p>
-
-</div>
-
-);
-
+    </div>
+  );
 };
 
 export default ThankYou;
